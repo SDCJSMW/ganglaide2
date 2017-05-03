@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="zepto.js" type="text/javascript" charset="utf-8"></script>
+	<script src="rem.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+*{
+	margin:0;
+	padding: 0;
+}
+span{
+	z-index: 999;
+}
+	html,body{
+		background: #000;
+		height: 100%;
+		overflow: hidden;
+		font-size: 16px;
+	}
+	.box{
+		width: 80%;
+		height: 100%;
+		margin:0 auto;
+		overflow: scroll;
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		-webkit-box-orient:vertical;
+	}
+	.bo{
+		background: url("15.png");
+		width: 100%;
+		background-size: 100% 100%;
+		height: 90%;
+	}
+	.bo1{
+		width: 49%;
+		height: 50%;
+		float: left;
+		text-align: center;
+		margin-top: 10%;
+		line-height: 1.5rem;
+	}
+	.bo1 p{
+		font-size: 0.4rem;
+	}
+	.bo1 #p2{
+		font-size: 0.3rem;
+		margin-top: -1rem;
+	}
+	.bo1 #p4{
+		font-size: 0.3rem;
+	}
+	.bo2{
+		width: 49%;
+		height: 50%;
+		float: left;
+		text-align: center;
+		margin-top: 10%;
+		line-height: 0.5rem;
+	}
+	.bo2 p{
+		font-size: 0.3rem;
+	}
+	.bo2 #p1{
+
+		margin-top: 1rem;
+	}
+	.bo3{
+		width: 49%;
+		height: 50%;
+		float: left;
+		text-align: center;
+		line-height: 0.5rem;
+	}
+	.bo3 p{
+		font-size: 0.3rem;
+	}
+	#g{
+		position: absolute;
+		right: 10%;
+	}
+	.boo{
+		width: 100%;
+	}
+	.bo_p1{
+		font-size: 0.4rem;
+		color: #fff;
+		margin-top: 3%;
+	}
+	.boo input{
+		width: 50%;
+		height: 0.5rem;
+		font-size: 0.5rem;
+		text-align: center;
+	}
+	.boo a{
+		width: 49%;
+		display: inline-block;
+	}
+	#bt1{
+		width: 50%;
+		height: 1rem;
+		font-size: 0.5rem;
+		margin-left: 20%;
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+</style>
+<body>
+	<div class="box" id="box">
+	<audio id="g" controls="controls" autoplay="autoplay" loop="loop"src="mp3/ge.mp3"></audio>
+		<div class="bo">
+			<div class="bo1">
+				<p id="p1">衷心的祝福你！</p>
+				<p id="p2">她（他）的名字</p>
+				<p id="p3">你想说的话</p>
+				<p id="p4">你的名字</p>
+			</div>
+			<div class="bo2">
+				<p id="p1">岁月总是愈来愈短,</p>
+				<p id="p2">生日总是愈来愈快,</p>
+				<p id="p3">思念总是愈来愈浓,</p>
+				<p id="p4">我的祝福也就愈来愈深,</p>
+				<p id="p4">愿你的每一天都如画一样的美丽!</p>
+				<p id="p4">生日快乐!</p>
+			</div>
+			<div class="bo3">
+				<p id="p1">在你的生日之际,</p>
+				<p id="p2">诚挚地献上我的三个祝愿:</p>
+				<p id="p3">一愿你身体健康;</p>
+				<p id="p4">二愿你幸福快乐;</p>
+				<p id="p4">三愿你万事如意!</p>
+			</div>
+		</div>
+		<div class="boo">
+			<p class ="bo_p1">
+				<a>她（他）的名字：</a><input id="in1" type="text">
+			</p>
+			<p class ="bo_p1">
+				<a>您的名字：</a><input id="in2" type="text">
+			</p>
+			<p class ="bo_p1">
+				<a>您的祝福短语：</a><input id="in3" type="text">
+			</p>
+			<button id="bt1">生成贺卡</button>
+		</div>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var g = document.getElementById("g");
+		g.play();
+		var index = 0;
+		setInterval(function(){
+			var num = Math.random()*100;
+			num = parseInt(num, 10);
+			
+			var box = document.getElementById("box");
+			/*var in1 = document.getElementById("in1");*/
+			var span = document.createElement("span");
+			span.innerHTML = "*";
+			span.style.color = "#fff";
+			span.style.position = "absolute";
+			span.style.top = "0";
+			span.style.left = num+"%";
+			span.style.fontSize = "0.3rem";
+			box.appendChild(span);
+			console.log(span.style.top);
+			index++;
+			console.log(index);
+			$("span").animate({top:"100%"},10000);
+			if ($("span").length == "300") {
+				$("span").remove("span");
+			};
+		},100);
+		
+		$("#bt1").click(function(){
+			if ($("#in1").val() == "") {
+				$("#in1").val("她（他）的名字");
+			};
+			if ($("#in2").val() == "") {
+				$("#in2").val("你的名字");
+			};
+			if ($("#in3").val() == "") {
+				$("#in3").val("你想说的话");
+			};
+			$("#p2").html($("#in1").val());
+			$("#p3").html($("#in3").val());
+			$("#p4").html($("#in2").val());
+		});
+		
+	}
+</script>
+</html>
